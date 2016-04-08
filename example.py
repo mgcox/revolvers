@@ -46,7 +46,7 @@ def checkValues(inputPassword, storedPassword):
 
 def verify(passwordWithRevolver):
 	#answer represents a hashed value stored in the DB, this is 68 chars long instead of 64 because it contains the revolver used the first time
-	answer = "0b14d501a594442a01c68595413130bcb3e8164d183d32937b851835442f69d5c94e"
+	answer = "0b14d501a594442a01c68595413bcb3e81614d183d332937b0851835442f69d5c94e"
 	attempt = checkValues(passwordWithRevolver, answer)
 	return attempt
 
@@ -71,7 +71,7 @@ encodedRevolver = str(revolver).encode("hex")
 #add revolver to random place in hashed string, this could be much more complex than just appending at random place
 passwordWithRevolver = hashedPassword[:location] + encodedRevolver + hashedPassword[location:]
 
-
+#A true or false value is returned if there is a problem with either the password or the revolver
 result = verify(passwordWithRevolver)
 
 print result 
