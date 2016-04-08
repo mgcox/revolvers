@@ -6,17 +6,8 @@ from datetime import datetime
 from random import randrange
 import difflib
 
-#Encodes Revolver
-def encodeRevolver( str ):
-	return str.encode("hex")
-
-#This is just one type of revolver, there could be hundreds of revolvers that each individual user uses as their revolver
-def getHourRevoler():
-	currentTime = datetime.now()
-	hour = currentTime.hour
-	encodedVersion = str(hour).encode("hex")
-	print encodedVersion
-	return encodedVersion
+#import revolver dictionary
+import revolverDictionary 
 
 #This will return true or false depending on whether the password and revolver match or not
 def checkValues(inputPassword, storedPassword):
@@ -39,7 +30,7 @@ def checkValues(inputPassword, storedPassword):
 		revolver = revolver[:-difArray[len(difArray) -2][2]] 
 	
 	#64 characters will have matched the stored hash in the db and the revolver will match the users chosen revolver, in this case the hour revolver
-	if len(removedHexString) == 64 and revolver == getHourRevoler():
+	if len(removedHexString) == 64 and revolver == revolverDictionary.getLocalMinuteRevoler():
 		return True
 
 	return False
